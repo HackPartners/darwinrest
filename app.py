@@ -7,18 +7,23 @@ from flask_restful import Api
 from resources.stationboard import StationBoard
 from resources.servicedetails import ServiceDetails
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 api = Api(app)
 
+@app.route('/')
+def docs():
+    return app.send_static_file('index.html')
 
 """
   @api {get} /board/:crs Request station board data
   @apiVersion 0.0.1
   @apiName GetStationBoard
+  @apiGroup GetStationBoard
+  @apiPermission admin
  
-  @apiDescription Retreive the details for a specific station board given a CRS code.
+  @apiDescription Retrieve the details for a specific station board given a CRS code.
  
-  @apiParam {Number} id A CRS short-code of the station. These codes can be found on National Rail Enquiries website.
+  @apiParam {Number} crs A CRS short-code of the station. These codes can be found on National Rail Enquiries website.
   @apiParam {String} apikey The API Key from Darwin OpenLBDWS.
  
   @apiSuccess {String}   arrival       The time of arrival.
@@ -45,7 +50,7 @@ api = Api(app)
     }
   ]
 
-  @apiSampleRequest /board/EUS?apikey=YOUR-API-KEY
+  @apiSampleRequest http://api.hacktrain.com/board/:crs
 
   @apiError NoApiKey No APIKEY provided.
  

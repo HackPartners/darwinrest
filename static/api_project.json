@@ -1,0 +1,1 @@
+{  "name": "Darwin REST API",  "version": "0.0.1",  "description": "Darwin REST documentation",  "apidoc": "0.2.0",  "sampleUrl": false,  "generator": {    "name": "apidoc",    "time": "2015-08-16T22:20:41.345Z",    "url": "http://apidocjs.com",    "version": "0.13.1"  }}
