@@ -1,10 +1,10 @@
-# Darwin REST
+## Overview
 
-This is a wrapper for National Rail Enquiries' Darwin API that exposes a REST API.
+* This is a wrapper for National Rail Enquiries' Darwin API that exposes a REST API. 
+* The code is open source and is available on the [Hack Partners Github](https://github.com/HackPartners/darwinrest) 
+* The API Docs for the Darwin REST API can be found at [darwin.hacktrain.com](http://darwin.hacktrain.com). 
+* For more information about the DARWIN APIs you can visit the [National Rail Enquiries documentation](http://www.nationalrail.co.uk/46391.aspx)
 
-The API Docs for the Darwin REST API can be found at [darwin.hacktrain.com](http://darwin.hacktrain.com).
-
-For more information about the DARWIN APIs you can visit the [National Rail Enquiries documentation](http://www.nationalrail.co.uk/46391.aspx)
 
 ## The TrainHackers (Contributors)
 
@@ -14,9 +14,11 @@ The HackTrain team has open sourced this project, and the active contributors to
 
 Big shoutout to Mr. [Robert B. Clarke](https://github.com/robert-b-clarke) for creating [nre-darwin-py](https://github.com/robert-b-clarke/nre-darwin-py) - a great python wrapper for Darwin's SOAP interface.
 
+
 ## Motivation
 
 Our vision is to bring innovation to the railway industry, and the first step to achieve this is by making the current masses of data available in the industry, easy to access and process. For this reason the HackTrain team has decided to create this opens source project to expose a standardized REST API for the Darwin API.
+
 
 ## Code Example
 
@@ -26,6 +28,7 @@ The API Docs can be found at [darwin.hacktrain.com](http://darwin.hacktrain.com)
     curl -i http://darwin.hacktrain.com/board/EUS?apikey=YOUR_KEY
 ```
 
+
 ## Installation
 
 In order to run darwinrest, you need to install the following python dependencies:
@@ -33,9 +36,11 @@ In order to run darwinrest, you need to install the following python dependencie
 * flask_restful
 * nre-darwin-py
 
+
 ## Tests
 
-Describe and show how to run the tests with code examples.
+System tests will be added as project is developed further.
+
 
 ## Roadmap
 
@@ -43,6 +48,7 @@ Currently the project is in early alpha phase. We are waiting for greater suppor
 * Exposing a REST interface for Service Details
 * Exposing a REST interface for all SOAP endpoints
 * Exposing a WebSockets interface for Darwin PUSH data
+
 
 ## License
 
