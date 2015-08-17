@@ -34,6 +34,8 @@ class StationBoard(Resource):
 
         args = query_parser.parse_args()
 
+        print args
+
         station_boards = get_station_board(
                             args.api_key,
                             crs,

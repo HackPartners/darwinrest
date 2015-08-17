@@ -36,6 +36,10 @@ In order to run darwinrest, you need to install the following python dependencie
 * flask_restful
 * nre-darwin-py
 
+If you're running a fresh ubuntu server, make sure you have the following dependencies:
+* sudo apt-get install libxml2-dev libxslt1-dev python-dev
+* apt-get install python-lxml
+
 
 ## Tests
 
