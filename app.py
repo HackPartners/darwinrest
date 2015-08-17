@@ -52,8 +52,6 @@ def docs():
     }
   ]
 
-  @apiSampleRequest http://darwin.hacktrain.com/board/:crs
-
   @apiError NoApiKey No APIKEY provided.
  
   @apiErrorExample NoApiKey Error Response Example:
