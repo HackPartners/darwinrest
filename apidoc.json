@@ -1,6 +1,6 @@
 {
   "name": "Darwin REST API",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "Darwin REST documentation",
   "apidoc": {
     "title": "Darwin REST API",
