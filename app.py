@@ -8,6 +8,7 @@ from flask import Flask
 from flask_restful import Api
 from resources.stationboard import StationBoard
 from resources.servicedetails import ServiceDetails
+from resources.ldbwsstatus import LdbwsStatus
 
 app = Flask(__name__, static_url_path='')
 api = Api(app)
@@ -17,11 +18,33 @@ def docs():
     return app.send_static_file('index.html')
 
 """
+  @api {get} /status/ Get status of Darwin services
+  @apiVersion 0.0.1
+  @apiName GetDarwinStatus
+  @apiGroup GetDarwinStatus
+  @apiPermission public
+ 
+  @apiDescription Retreive the status for the OpenLBDWS API as a text from http://realtime.nationalrail.co.uk/OpenLDBWSRegistration/.
+ 
+  @apiSuccess {String}   OpenLBDWS      The status of the OpenLBDWS API.
+
+  @apiExample Status example usage:
+  curl -i http://darwin.hacktrain.com/status
+
+  @apiSuccessExample Success Response Example:
+  {
+     "OpenLDBWS": "Available"
+  }
+"""
+api.add_resource(LdbwsStatus, '/status')
+
+
+"""
   @api {get} /board/:crs Request station board data
   @apiVersion 0.0.1
   @apiName GetStationBoard
   @apiGroup GetStationBoard
-  @apiPermission admin
+  @apiPermission user
  
   @apiDescription Retrieve the details for a specific station board given a CRS code.
  
@@ -63,7 +86,6 @@ def docs():
       }
 """
 api.add_resource(StationBoard, '/board/<string:crs>')
-api.add_resource(ServiceDetails, '/service', '/service/<string:id>')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
