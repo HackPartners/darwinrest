@@ -45,9 +45,11 @@ System tests will be added as project is developed further.
 ## Roadmap
 
 Currently the project is in early alpha phase. We are waiting for greater support in order to develop this project further. Our future roadmap includes:
-* Exposing a REST interface for Service Details
 * Exposing a REST interface for all SOAP endpoints
+* Exposing a REST interface for extra functionality
+** Adding status of OpenLDWS API through REST
 * Exposing a WebSockets interface for Darwin PUSH data
+* Exploring posibility of adding REST interface to data from Darwin PUSH
 
 
 ## License
