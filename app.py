@@ -1,6 +1,8 @@
 #Adding to pythonpath
 import sys
-sys.path.append("/Users/bloomberglondonrd1/IdeaProjects/darwin/")
+import os
+directory = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..'))
+sys.path.append(directory)
 
 from flask import Flask
 from flask_restful import Api
@@ -32,7 +34,7 @@ def docs():
   @apiSuccess {Number}   platform      The platform number.
 
   @apiExample Example usage:
-  curl -i http://api.hacktrain.com/board/EUS?apikey=YOUR-API-KEY
+  curl -i http://darwin.hacktrain.com/board/EUS?apikey=YOUR-API-KEY
 
   @apiSuccessExample Success Response Example:
   [
@@ -50,7 +52,7 @@ def docs():
     }
   ]
 
-  @apiSampleRequest http://api.hacktrain.com/board/:crs
+  @apiSampleRequest http://darwin.hacktrain.com/board/:crs
 
   @apiError NoApiKey No APIKEY provided.
  
@@ -66,4 +68,4 @@ api.add_resource(StationBoard, '/board/<string:crs>')
 api.add_resource(ServiceDetails, '/service', '/service/<string:id>')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=80)
