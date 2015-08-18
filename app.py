@@ -20,7 +20,7 @@ def docs():
 """
   @api {get} /status/ Get status of Darwin services
   @apiVersion 0.0.1
-  @apiName GetDarwinStatus
+  @apiName Get Darwin Status
   @apiGroup GetDarwinStatus
   @apiPermission public
  
@@ -42,7 +42,7 @@ api.add_resource(LdbwsStatus, '/status')
 """
   @api {get} /board/:crs Request station board data
   @apiVersion 0.0.1
-  @apiName GetStationBoard
+  @apiName Get Station Board
   @apiGroup GetStationBoard
   @apiPermission user
  
@@ -88,4 +88,4 @@ api.add_resource(LdbwsStatus, '/status')
 api.add_resource(StationBoard, '/board/<string:crs>')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=80, debug=True)

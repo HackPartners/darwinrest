@@ -19,7 +19,7 @@ def get_station_board(
     crs_upper = crs_code.upper()
 
     darwin_session = _get_darwin_session(api_key)
-    
+
     station_board = darwin_session.get_station_board(
                         crs_upper,
                         include_departures=departures,
@@ -30,12 +30,13 @@ def get_station_board(
     response = []
 
     for station in station_board.train_services:
-        board = {
-            "platform": station.platform,
-            "destination": station.destination_text,
-            "arrival": station.std,
-            "departure": station.etd
-        }
+        board = {}
+
+        board["platform"] = station.platform
+        board["destination"] = station.destination_text
+        if arrivals: board["arrival"] = station.std
+        if arrivals: board["departure"] = station.etd
+        
         response.append(board)
 
     return response

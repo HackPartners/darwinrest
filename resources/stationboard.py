@@ -1,10 +1,16 @@
-from flask_restful import Resource, reqparse
+from flask_restful import Resource, reqparse, marshal_with, fields
 
 import json
 
 from darwinrest.common.darwinutil import get_station_board
 
 query_parser = reqparse.RequestParser()
+
+def api_bool(value):
+    if value in ('y', 't', 'true', 'True', 'yes', '1'):
+        return True
+    else:
+        return False
 
 query_parser.add_argument(
     'apikey', dest='api_key',
@@ -13,11 +19,11 @@ query_parser.add_argument(
 )
 query_parser.add_argument(
     'departures', dest='departures', default=True,
-    type=bool, help='Include departing services in the departure board',
+    type=api_bool, help='Include departing services in the departure board',
 )
 query_parser.add_argument(
     'arrivals', dest='arrivals', default=False,
-    type=bool, help='Include arriving services in the departure board',
+    type=api_bool, help='Include arriving services in the departure board',
 )
 query_parser.add_argument(
     'destination', dest='destination', default=None,
@@ -34,14 +40,18 @@ class StationBoard(Resource):
 
         args = query_parser.parse_args()
 
-        print args
+        try:
+            response = get_station_board(
+                                args.api_key,
+                                crs,
+                                args.departures,
+                                args.arrivals,
+                                args.destination,
+                                args.origin)
+        except Exception as e:
+            response = {
+                "error": str(e)
+            }
 
-        station_boards = get_station_board(
-                            args.api_key,
-                            crs,
-                            args.departures,
-                            args.arrivals,
-                            args.destination,
-                            args.origin)
+        return response
 
-        return station_boards
