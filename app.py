@@ -50,6 +50,10 @@ api.add_resource(LdbwsStatus, '/status')
  
   @apiParam {Number} crs A CRS short-code of the station. These codes can be found on National Rail Enquiries website.
   @apiParam {String} apikey The API Key from Darwin OpenLBDWS.
+  @apiParam {Boolean} departures Boolean stating whether departures are requested (Either departures or arrivals required).
+  @apiParam {Boolean} arrivals Boolean stating whether arrivals are requested (Either departures or arrivals required).
+  @apiParam {String} destination The destination as a CRS code where the service is going.
+  @apiParam {String} origin The origin as a CRS code where the service is coming from.
  
   @apiSuccess {String}   arrival       The time of arrival.
   @apiSuccess {String}   departure     The time for departure.
