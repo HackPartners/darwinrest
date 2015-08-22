@@ -25,7 +25,7 @@ Our vision is to bring innovation to the railway industry, and the first step to
 The API Docs can be found at [darwin.hacktrain.com](http://darwin.hacktrain.com). It is very simple to use this API. In order to retreive station boards, for example, you only have to send:
 
 ``` bash
-    curl -i http://darwin.hacktrain.com/board/EUS?apikey=YOUR_KEY
+    curl -i http://darwin.hacktrain.com/board/EUS?apiKey=YOUR_KEY
 ```
 
 
