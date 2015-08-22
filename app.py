@@ -10,15 +10,11 @@ from resources.stationboard import StationBoard
 from resources.servicedetails import ServiceDetails
 from resources.ldbwsstatus import LdbwsStatus
 
-app = Flask(__name__, static_url_path='')
+app = Flask(__name__)
 api = Api(app)
 
-@app.route('/')
-def docs():
-    return app.send_static_file('index.html')
-
 """
-  @api {get} /status/ Get status of Darwin services
+  @api {get} /api/status/ Get status of Darwin services
   @apiVersion 0.0.1
   @apiName Get Darwin Status
   @apiGroup GetDarwinStatus
@@ -29,18 +25,18 @@ def docs():
   @apiSuccess {String}   OpenLBDWS      The status of the OpenLBDWS API.
 
   @apiExample Status example usage:
-  curl -i http://darwin.hacktrain.com/status
+  curl -i http://darwin.hacktrain.com/api/status
 
   @apiSuccessExample Success Response Example:
   {
      "OpenLDBWS": "Available"
   }
 """
-api.add_resource(LdbwsStatus, '/status')
+api.add_resource(LdbwsStatus, '/api/status')
 
 
 """
-  @api {get} /board/:crs Request station board data
+  @api {get} /api/board/:crs Request station board data
   @apiVersion 0.0.1
   @apiName Get Station Board
   @apiGroup GetStationBoard
@@ -61,7 +57,7 @@ api.add_resource(LdbwsStatus, '/status')
   @apiSuccess {Number}   platform      The platform number.
 
   @apiExample Example usage:
-  curl -i http://darwin.hacktrain.com/board/EUS?apikey=YOUR-API-KEY
+  curl -i http://darwin.hacktrain.com/api/board/EUS?apikey=YOUR-API-KEY
 
   @apiSuccessExample Success Response Example:
   [
@@ -89,7 +85,55 @@ api.add_resource(LdbwsStatus, '/status')
           }
       }
 """
-api.add_resource(StationBoard, '/board/<string:crs>')
+api.add_resource(StationBoard, '/api/board/<string:crs>')
+
+
+"""
+  @api {get} /api/service/:id Request details for service
+  @apiVersion 0.0.1
+  @apiName Get Service Details
+  @apiGroup GetServiceDetails
+  @apiPermission user
+ 
+  @apiDescription Retrieve the details for a specific service given a service ID.
+ 
+  @apiParam {Number} Id The id for the service that is to be retreived.
+  
+  @apiSuccess {String}   arrival       The time of arrival.
+  @apiSuccess {String}   departure     The time for departure.
+  @apiSuccess {Date}     destination   The destination of the service.
+  @apiSuccess {Number}   platform      The platform number.
+
+  @apiExample Example usage:
+  curl -i http://darwin.hacktrain.com/api/service/13?apikey=YOUR-API-KEY
+
+  @apiSuccessExample Success Response Example:
+  [
+    {
+        "arrival": "19:14", 
+        "departure": "On time", 
+        "destination": "Tring", 
+        "platform": "10"
+    }, 
+    {
+        "arrival": "19:17", 
+        "departure": "On time", 
+        "destination": "Manchester Piccadilly", 
+        "platform": null
+    }
+  ]
+
+  @apiError NoApiKey No APIKEY provided.
+ 
+  @apiErrorExample NoApiKey Error Response Example:
+      HTTP/1.1 401 Not Authenticated
+      {
+          "message": {
+            "apikey": "(Your Darwin API Key)  Missing required parameter in the JSON body or the post body or the query string"
+          }
+      }
+"""
+api.add_resource(ServiceDetails, '/api/service/<int:id>')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True)
+    app.run(host='127.0.0.1', port=3000, debug=True)

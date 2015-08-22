@@ -1,7 +1,5 @@
 from flask_restful import Resource, reqparse, marshal_with, fields
 
-import json
-
 from darwinrest.common.darwinutil import get_station_board
 
 query_parser = reqparse.RequestParser()

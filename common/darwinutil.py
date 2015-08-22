@@ -40,3 +40,11 @@ def get_station_board(
         response.append(board)
 
     return response
+
+def get_service_details(id):
+
+    darwin_session = _get_darwin_session(api_key)
+
+    service_details = darwin_session.get_service_details(id)
+
+    return service_details
