@@ -75,35 +75,6 @@ api.add_resource(LdbwsStatus, '/api/status')
         "platform": null
     }
   ]
-
-  @apiExample Usage All Fields Request:
-  curl -i http://darwin.hacktrain.com/api/board/EUS?apiKey=YOUR-API-KEY
-
-  @apiSuccessExample Success Simple Response Example:
-  [
-    {
-        "arrival": "19:14", 
-        "departure": "On time", 
-        "destination": "Tring", 
-        "platform": "10"
-    }, 
-    {
-        "arrival": "19:17", 
-        "departure": "On time", 
-        "destination": "Manchester Piccadilly", 
-        "platform": null
-    }
-  ]
-
-  @apiError NoApiKey No APIKEY provided.
- 
-  @apiErrorExample NoApiKey Error Response Example:
-      HTTP/1.1 401 Not Authenticated
-      {
-          "message": {
-            "apiKey": "(Your Darwin API Key)  Missing required parameter in the JSON body or the post body or the query string"
-          }
-      }
 """
 api.add_resource(StationBoard, '/api/board/<string:crs>')
 
@@ -142,16 +113,6 @@ api.add_resource(StationBoard, '/api/board/<string:crs>')
         "platform": null
     }
   ]
-
-  @apiError NoApiKey No APIKEY provided.
- 
-  @apiErrorExample NoApiKey Error Response Example:
-      HTTP/1.1 401 Not Authenticated
-      {
-          "message": {
-            "apiKey": "(Your Darwin API Key)  Missing required parameter in the JSON body or the post body or the query string"
-          }
-      }
 """
 api.add_resource(ServiceDetails, '/api/service/<int:id>')
 

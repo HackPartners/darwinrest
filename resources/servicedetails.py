@@ -14,12 +14,12 @@ query_parser.add_argument(
 
 class ServiceDetails(Resource):
 
-    def get(self):
+    def get(self, id):
 
         args = query_parser.parse_args()
 
         try:
-            response = get_service_details(id)
+            response = get_service_details(args.api_key, id)
         except Exception as e:
             response = {
                 "error": str(e)

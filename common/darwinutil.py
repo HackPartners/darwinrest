@@ -66,7 +66,7 @@ def get_station_board(
 
     return response
 
-def get_service_details(id):
+def get_service_details(api_key, id):
 
     darwin_session = _get_darwin_session(api_key)
 
