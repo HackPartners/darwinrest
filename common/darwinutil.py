@@ -52,6 +52,7 @@ def get_station_board(
         board["arrival"] = station.std
         board["departure"] = station.etd
         board["platform"] = station.platform
+        board["serviceId"] = station.service_id
 
         if all_fields:
             board["destinations"] = _get_formatted_locations(station.destinations)
@@ -59,9 +60,6 @@ def get_station_board(
             board["operatorCode"] = station.operator_code
             board["operatorName"] = station.operator_name
 
-        # TODO:
-        print station.service_id
-        
         response.append(board)
 
     return response

@@ -13,6 +13,14 @@ from resources.ldbwsstatus import LdbwsStatus
 app = Flask(__name__)
 api = Api(app)
 
+@app.after_request
+def after_request(response):
+  # This function enables CORS in all requests
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+  response.headers.add('Access-Control-Allow-Methods', 'GET')
+  return response
+
 """
   @api {get} /api/status/ Get status of Darwin services
   @apiVersion 0.0.1
@@ -80,7 +88,7 @@ api.add_resource(StationBoard, '/api/board/<string:crs>')
 
 
 """
-  @api {get} /api/service/:id Request details for service
+  @api {get} /api/service Request details for service
   @apiVersion 0.0.1
   @apiName Get Service Details
   @apiGroup GetServiceDetails
@@ -96,7 +104,7 @@ api.add_resource(StationBoard, '/api/board/<string:crs>')
   @apiSuccess {Number}   platform      The platform number.
 
   @apiExample Example usage:
-  curl -i http://darwin.hacktrain.com/api/service/13?apiKey=YOUR-API-KEY
+  curl -i http://darwin.hacktrain.com/api/service?id=SERVICE_ID&apiKey=YOUR-API-KEY
 
   @apiSuccessExample Success Response Example:
   [
@@ -114,7 +122,7 @@ api.add_resource(StationBoard, '/api/board/<string:crs>')
     }
   ]
 """
-api.add_resource(ServiceDetails, '/api/service/<int:id>')
+api.add_resource(ServiceDetails, '/api/service')
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=3000, debug=True)

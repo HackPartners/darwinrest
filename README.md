@@ -32,7 +32,17 @@ The API Docs can be found at [darwin.hacktrain.com](http://darwin.hacktrain.com)
 ## Installation
 
 In order to run darwinrest, you need to install the following python dependencies:
-* pip install flask flask_restful nre-darwin-py lxml cssselect beautifulsoup4
+* flask
+* flask_restful
+* nre-darwin-py
+* lxml cssselect
+* beautifulsoup4
+
+These can be installed by running:
+
+``` bash
+    pip install flask flask_restful nre-darwin-py lxml cssselect beautifulsoup4
+```
 
 If you're running a fresh ubuntu server, make sure you have the following dependencies:
 * sudo apt-get install libxml2-dev libxslt1-dev python-dev

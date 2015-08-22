@@ -12,9 +12,15 @@ query_parser.add_argument(
     type=str, help='Your Darwin API Key',
 )
 
+query_parser.add_argument(
+    'id', dest='id',
+    required=True,
+    type=str, help='The ID of the service',
+)
+
 class ServiceDetails(Resource):
 
-    def get(self, id):
+    def get(self):
 
         args = query_parser.parse_args()
 
