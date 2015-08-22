@@ -1,0 +1,198 @@
+@import url(http://www.markmurray.co/codepen/entypostyle.css);
+
+@font-face {
+    font-family: Ubuntu;
+    src: url(fonts/ubuntu.ttf);
+}
+
+::selection {
+  background: #001; }
+
+body, html {
+  width: 100%;
+  overflow-x: hidden;
+  font-family: 'Lato', sans-serif;
+  font-weight: 200;
+  line-height: 1.5;
+  font-size: 18px;
+  text-rendering: geometricPrecision;
+  hyphen: auto; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 500;
+  font-family: Ubuntu;
+  padding: 0;
+  margin: 0; }
+
+a {
+  text-decoration: none;
+  color: blue; }
+
+h1.special {
+  font-size: 5em;
+  padding-top: 20px; }
+
+h1 {
+  font-size: 2.5em; }
+
+h1.general {
+  text-align: center; }
+
+.fluid-container {
+  width: 100%;
+  padding-bottom: 100px;
+  padding-top: 100px; }
+ul {
+  padding-right: 50px;
+}
+
+.aboutSection {
+  padding-top: 80px;
+  color: #fff; }
+  .aboutSection .logo {
+    text-align: center; }
+    .aboutSection .logo .image {
+      width: 100%;
+      text-align: center; }
+    .aboutSection .logo img {
+      position: relative;
+      display: inline-block;
+      width: 80%;
+      max-width: 265px;
+      margin-top: auto; }
+    .aboutSection .logo .text p {
+      position: relative;
+      margin: auto;
+      text-transform: uppercase; }
+    .aboutSection .logo h1 {
+      font-weight: 100;
+      text-align: center; }
+  .aboutSection .mainLinks {
+    text-align: center; }
+  .aboutSection a.applyButton {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    width: 150px;
+    border: 1px solid #fff;
+    text-align: center;
+    display: inline-block;
+    margin: 10px;
+    border-radius: 0px;
+    color: #fff;
+    margin: auto;
+    margin-top: 40px;
+    transition: 0.3s ease all;
+    -webkit-transition: 0.3s ease all;
+    -moz-transition: 0.3s ease all;
+    -ms-transition: 0.3s ease all;
+    -ie-transition: 0.3s ease all;
+    -o-transition: 0.3s ease all;
+    overflow: hidden; }
+  .aboutSection a.applyButton:after {
+    content: '»';
+    position: absolute;
+    display: inline-block;
+    margin-left: 60px;
+    opacity: 0;
+    transition: 0.3s ease all;
+    -webkit-transition: 0.3s ease all;
+    -moz-transition: 0.3s ease all;
+    -ms-transition: 0.3s ease all;
+    -ie-transition: 0.3s ease all;
+    -o-transition: 0.3s ease all; }
+  .aboutSection a.applyButton:hover {
+    background: rgba(231, 231, 231, 0.5);
+    padding-right: 15px; }
+  .aboutSection a.applyButton:active {
+    padding-right: 10px;
+    padding-left: 5px; }
+  .aboutSection a.applyButton:hover:after {
+    margin-left: 40px;
+    opacity: 1; }
+
+
+
+.faqSection {
+  background: #eee;
+  color: #111;
+  width: 80%;
+  margin: auto auto;
+  background: url('../img/1.png') center center;
+  background-color: white;
+  background-size: cover; }
+
+.contactSection {
+  color: #fff;
+  background: #111; }
+  .contactSection .container {
+    text-align: center; }
+  .contactSection .container > a {
+    padding: 0px 30px; }
+  .contactSection .container > a:hover {
+    color: grey; }
+  .contactSection .social {
+    background: transparent; }
+  .contactSection .social i {
+    color: white;
+    padding: 1em;
+    position: relative;
+    background: transparent;
+    border-radius: 0px;
+    transition: 0.3s ease all;
+    -webkit-transition: 0.3s ease all;
+    -moz-transition: 0.3s ease all;
+    -ms-transition: 0.3s ease all;
+    -ie-transition: 0.3s ease all;
+    -o-transition: 0.3s ease all; }
+  .contactSection .social a:nth-child(1) i:hover {
+    background: #3b5998;
+    border-left: none;
+    border-radius: 40px; }
+  .contactSection .social a:nth-child(2) i:hover {
+    background: #00a0d1;
+    border-radius: 40px; }
+  .contactSection .social a:nth-child(3) i:hover {
+    background: #983b3b;
+    border-radius: 40px; }
+
+
+p {
+  width: 90%;
+  margin: auto auto; 
+}
+
+.clear {
+  clear: both; }
+
+#particles-js {
+  background: #0D0D0D;
+  position: fixed;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0; }
+
+
+
+@media only screen and (min-width: 1300px) {
+  .faqSection {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .faqSection {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .faqSection {
+    width: 100%;
+  }
+}
+
+
