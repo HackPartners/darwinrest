@@ -45,21 +45,41 @@ api.add_resource(LdbwsStatus, '/api/status')
   @apiDescription Retrieve the details for a specific station board given a CRS code.
  
   @apiParam {Number} crs A CRS short-code of the station. These codes can be found on National Rail Enquiries website.
-  @apiParam {String} apikey The API Key from Darwin OpenLBDWS.
-  @apiParam {Boolean} departures Boolean stating whether departures are requested (Either departures or arrivals required).
-  @apiParam {Boolean} arrivals Boolean stating whether arrivals are requested (Either departures or arrivals required).
-  @apiParam {String} destination The destination as a CRS code where the service is going.
-  @apiParam {String} origin The origin as a CRS code where the service is coming from.
+  @apiParam {String} apiKey The API Key from Darwin OpenLBDWS.
+  @apiParam {Boolean} departures (Optional) Boolean stating whether departures are requested (Either departures or arrivals required).
+  @apiParam {Boolean} arrivals (Optional) Boolean stating whether arrivals are requested (Either departures or arrivals required).
+  @apiParam {String} destination (Optional) The destination as a CRS code where the service is going.
+  @apiParam {String} origin (Optional) The origin as a CRS code where the service is coming from.
+  @apiParam {String} allFields (Optional) Flag that states whether all additional fields will be returned.
  
   @apiSuccess {String}   arrival       The time of arrival.
   @apiSuccess {String}   departure     The time for departure.
   @apiSuccess {Date}     destination   The destination of the service.
   @apiSuccess {Number}   platform      The platform number.
 
-  @apiExample Example usage:
-  curl -i http://darwin.hacktrain.com/api/board/EUS?apikey=YOUR-API-KEY
+  @apiExample Usage Simple Request:
+  curl -i http://darwin.hacktrain.com/api/board/EUS?apiKey=YOUR-API-KEY
 
-  @apiSuccessExample Success Response Example:
+  @apiSuccessExample Success Simple Response Example:
+  [
+    {
+        "arrival": "19:14", 
+        "departure": "On time", 
+        "destination": "Tring", 
+        "platform": "10"
+    }, 
+    {
+        "arrival": "19:17", 
+        "departure": "On time", 
+        "destination": "Manchester Piccadilly", 
+        "platform": null
+    }
+  ]
+
+  @apiExample Usage All Fields Request:
+  curl -i http://darwin.hacktrain.com/api/board/EUS?apiKey=YOUR-API-KEY
+
+  @apiSuccessExample Success Simple Response Example:
   [
     {
         "arrival": "19:14", 
@@ -81,7 +101,7 @@ api.add_resource(LdbwsStatus, '/api/status')
       HTTP/1.1 401 Not Authenticated
       {
           "message": {
-            "apikey": "(Your Darwin API Key)  Missing required parameter in the JSON body or the post body or the query string"
+            "apiKey": "(Your Darwin API Key)  Missing required parameter in the JSON body or the post body or the query string"
           }
       }
 """
@@ -105,7 +125,7 @@ api.add_resource(StationBoard, '/api/board/<string:crs>')
   @apiSuccess {Number}   platform      The platform number.
 
   @apiExample Example usage:
-  curl -i http://darwin.hacktrain.com/api/service/13?apikey=YOUR-API-KEY
+  curl -i http://darwin.hacktrain.com/api/service/13?apiKey=YOUR-API-KEY
 
   @apiSuccessExample Success Response Example:
   [
@@ -129,7 +149,7 @@ api.add_resource(StationBoard, '/api/board/<string:crs>')
       HTTP/1.1 401 Not Authenticated
       {
           "message": {
-            "apikey": "(Your Darwin API Key)  Missing required parameter in the JSON body or the post body or the query string"
+            "apiKey": "(Your Darwin API Key)  Missing required parameter in the JSON body or the post body or the query string"
           }
       }
 """

@@ -8,13 +8,26 @@ def _get_darwin_session(api_key):
         wsdl=DARWIN_WSDL, 
         api_key=api_key)
 
+def _get_formatted_locations(locations):
+    locat = []
+    for d in locations:
+        curr_locat = {
+            "location": d.location_name,
+            "crs": d.crs
+        }
+        locat.append(curr_locat)
+
+    return locat
+
+
 def get_station_board(
         api_key, 
         crs_code,
         departures,
         arrivals,
         destination,
-        origin):
+        origin, 
+        all_fields):
 
     crs_upper = crs_code.upper()
 
@@ -32,10 +45,22 @@ def get_station_board(
     for station in station_board.train_services:
         board = {}
 
+        # BASIC FIELDS
         board["platform"] = station.platform
         board["destination"] = station.destination_text
-        if arrivals: board["arrival"] = station.std
-        if arrivals: board["departure"] = station.etd
+        board["origin"] = station.origin_text
+        board["arrival"] = station.std
+        board["departure"] = station.etd
+        board["platform"] = station.platform
+
+        if all_fields:
+            board["destinations"] = _get_formatted_locations(station.destinations)
+            board["origins"] = _get_formatted_locations(station.origins)
+            board["operatorCode"] = station.operator_code
+            board["operatorName"] = station.operator_name
+
+        # TODO:
+        print station.service_id
         
         response.append(board)
 

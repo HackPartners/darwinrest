@@ -11,7 +11,7 @@ def api_bool(value):
         return False
 
 query_parser.add_argument(
-    'apikey', dest='api_key',
+    'apiKey', dest='api_key',
     required=True,
     type=str, help='Your Darwin API Key',
 )
@@ -31,6 +31,10 @@ query_parser.add_argument(
     'origin', dest='origin', default=None,
     type=str, help='Filter results so they only include services originating from a particular station',
 )
+query_parser.add_argument(
+    'allFields', dest='all_fields', default=None,
+    type=api_bool, help='Whether response should contain all fields',
+)
 
 class StationBoard(Resource):
 
@@ -45,7 +49,8 @@ class StationBoard(Resource):
                                 args.departures,
                                 args.arrivals,
                                 args.destination,
-                                args.origin)
+                                args.origin,
+                                args.all_fields)
         except Exception as e:
             response = {
                 "error": str(e)

@@ -7,7 +7,7 @@ from nredarwin.webservice import DarwinLdbSession
 query_parser = reqparse.RequestParser()
 
 query_parser.add_argument(
-    'apikey', dest='api_key',
+    'apiKey', dest='api_key',
     required=True,
     type=str, help='Your Darwin API Key',
 )
