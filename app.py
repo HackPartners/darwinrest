@@ -53,7 +53,7 @@ api.add_resource(LdbwsStatus, '/api/status')
 
   @apiDescription Retreive either all crs codes, or a subset of codes
 
-  @apiParam {string} query (Optional) A query to find all stations that contain this string.
+  @apiParam {String} query (Optional) A query to find all stations that contain this string.
 
   @apiExample Code Query Example:
   curl -i http://darwin.hacktrain.com/api/crs/eus
