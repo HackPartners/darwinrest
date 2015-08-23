@@ -1,14 +1,9 @@
 from flask_restful import Resource, reqparse, marshal_with, fields
 
 from darwinrest.common.darwinutil import get_station_board
+from darwinrest.common.util import api_bool
 
 query_parser = reqparse.RequestParser()
-
-def api_bool(value):
-    if value in ('y', 't', 'true', 'True', 'yes', '1'):
-        return True
-    else:
-        return False
 
 query_parser.add_argument(
     'apiKey', dest='api_key',

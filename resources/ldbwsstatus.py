@@ -2,7 +2,7 @@ from flask_restful import Resource, reqparse
 
 import json
 
-from darwinrest.common.darwinspiders import get_ldbws_status
+from darwinrest.common.darwinfetcher import get_ldbws_status
 
 class LdbwsStatus(Resource):
 

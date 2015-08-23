@@ -9,6 +9,7 @@ from flask_restful import Api
 from resources.stationboard import StationBoard
 from resources.servicedetails import ServiceDetails
 from resources.ldbwsstatus import LdbwsStatus
+from resources.stationcrs import StationCrs
 
 app = Flask(__name__)
 api = Api(app)
@@ -22,7 +23,7 @@ def after_request(response):
   return response
 
 """
-  @api {get} /api/status/ Get status of Darwin services
+  @api {get} /api/status Get status of Darwin services
   @apiVersion 0.0.1
   @apiName Get Darwin Status
   @apiGroup GetDarwinStatus
@@ -44,11 +45,33 @@ api.add_resource(LdbwsStatus, '/api/status')
 
 
 """
+  @api {get} /api/code/:query Get all crs codes, and query stations by string
+  @apiVersion 0.0.1
+  @apiName Get Station CRS
+  @apiGroup GetStationCRS
+  @apiPersmission public
+
+  @apiDescription Retreive either all crs codes, or a subset of codes
+
+  @apiParam {string} query (Optional) A query to find all stations that contain this string.
+
+  @apiExample Code Query Example:
+  curl -i http://darwin.hacktrain.com/api/crs/eus
+
+  @apiSuccessExample
+  {
+    "EUS": "Euston"
+  }
+"""
+api.add_resource(StationCrs, '/api/code', '/api/code/<string:query>')
+
+
+"""
   @api {get} /api/board/:crs Request station board data
   @apiVersion 0.0.1
   @apiName Get Station Board
   @apiGroup GetStationBoard
-  @apiPermission user
+  @apiPermission public
  
   @apiDescription Retrieve the details for a specific station board given a CRS code.
  
