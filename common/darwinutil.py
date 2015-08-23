@@ -19,6 +19,28 @@ def _get_formatted_locations(locations):
 
     return locat
 
+def _get_calling_point_lists(calling_point_lists):
+    response = []
+    for cp_list in calling_point_lists:
+        response_container = {}
+        response_container["serviceType"] = cp_list.service_type
+        response_container["changeRequired"] = cp_list.service_change_required
+        response_container["isCancelled"] = cp_list.association_is_cancelled
+
+        response_container["callingPoints"] = []
+
+        for cp in cp_list.calling_points:
+            response_item = {}
+            response_item["locationName"] = cp.location_name
+            response_item["crs"] = cp.crs
+            response_item["actualTime"] = cp.at
+            response_item["estimatedTime"] = cp.et
+            response_item["scheduledTime"] = cp.st
+            
+            response_container["callingPoints"].append(response_item)
+
+        response.append(response_container)
+    return response
 
 def get_station_board(
         api_key, 
@@ -64,10 +86,39 @@ def get_station_board(
 
     return response
 
-def get_service_details(api_key, id):
+def get_service_details(api_key, service_id, all_fields=False):
 
     darwin_session = _get_darwin_session(api_key)
 
-    service_details = darwin_session.get_service_details(id)
+    service_details = darwin_session.get_service_details(service_id)
 
-    return service_details
+    service_response = {}
+    # standard fields
+    service_response["isCancelled"] = service_details.is_cancelled
+    service_response["locationName"] = service_details.location_name
+    service_response["crs"] = service_details.crs
+    service_response["platform"] = service_details.platform
+    service_response["scheduledArrivalTime"] = service_details.sta
+    service_response["scheduledDepartureTime"] = service_details.std
+    service_response["operatorCode"] = service_details.operator_code
+    service_response["operatorName"] = service_details.operator_name
+
+    if all_fields:
+        service_response["disruptionReason"] = service_details.disruption_reason
+        service_response["generatedAt"] = str(service_details.generated_at)
+        service_response["actualArrivalTime"] = service_details.ata
+        service_response["actualDepartureTime"] = service_details.atd
+        service_response["estimatedArrivalTime"] = service_details.eta
+        service_response["estimatedDepartureTime"] = service_details.etd
+
+        service_response["subsequentCallingPointList"] = _get_calling_point_lists(service_details.subsequent_calling_point_lists)
+        service_response["previousCallingPointList"] = _get_calling_point_lists(service_details.previous_calling_point_lists)
+
+    print service_details.previous_calling_point_lists
+    print service_details.subsequent_calling_point_lists
+    print service_details.previous_calling_points
+    print service_details.subsequent_calling_points
+
+    return service_response
+
+

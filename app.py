@@ -120,6 +120,7 @@ api.add_resource(StationBoard, '/api/board/<string:crs>')
   @apiDescription Retrieve the details for a specific service given a service ID.
  
   @apiParam {Number} Id The id for the service that is to be retreived.
+  @apiParam {Number} allFields A flag that states whether all fields should be included.
   
   @apiSuccess {String}   arrival       The time of arrival.
   @apiSuccess {String}   departure     The time for departure.
@@ -130,20 +131,72 @@ api.add_resource(StationBoard, '/api/board/<string:crs>')
   curl -i http://darwin.hacktrain.com/api/service?id=SERVICE_ID&apiKey=YOUR-API-KEY
 
   @apiSuccessExample Success Response Example:
-  [
-    {
-        "arrival": "19:14", 
-        "departure": "On time", 
-        "destination": "Tring", 
-        "platform": "10"
-    }, 
-    {
-        "arrival": "19:17", 
-        "departure": "On time", 
-        "destination": "Manchester Piccadilly", 
-        "platform": null
-    }
-  ]
+  {
+    "crs": "EUS", 
+    "isCancelled": null, 
+    "locationName": "London Euston", 
+    "operatorCode": "VT", 
+    "operatorName": "Virgin Trains", 
+    "platform": null, 
+    "scheduledArrivalTime": null, 
+    "scheduledDepartureTime": "15:17"
+  }
+
+  @apiSuccessExample Success Response With allFields=True:
+  {
+    "actualArrivalTime": null, 
+    "actualDepartureTime": "On time", 
+    "crs": "EUS", 
+    "disruptionReason": null, 
+    "estimatedArrivalTime": null, 
+    "estimatedDepartureTime": null, 
+    "generatedAt": "2015-08-23 16:06:02.010761+01:00", 
+    "isCancelled": null, 
+    "locationName": "London Euston", 
+    "operatorCode": "VT", 
+    "operatorName": "Virgin Trains", 
+    "platform": null, 
+    "previousCallingPointList": [], 
+    "scheduledArrivalTime": null, 
+    "scheduledDepartureTime": "15:17", 
+    "subsequentCallingPointList": [
+      {
+        "callingPoints": [
+            {
+                "actualTime": "15:46", 
+                "crs": "MKC", 
+                "estimatedTime": null, 
+                "locationName": "Milton Keynes Central", 
+                "scheduledTime": "15:50"
+            }, 
+            {
+                "actualTime": null, 
+                "crs": "SOT", 
+                "estimatedTime": "On time", 
+                "locationName": "Stoke-on-Trent", 
+                "scheduledTime": "16:50"
+            }, 
+            {
+                "actualTime": null, 
+                "crs": "SPT", 
+                "estimatedTime": "On time", 
+                "locationName": "Stockport", 
+                "scheduledTime": "17:18"
+            }, 
+            {
+                "actualTime": null, 
+                "crs": "MAN", 
+                "estimatedTime": "On time", 
+                "locationName": "Manchester Piccadilly", 
+                "scheduledTime": "17:29"
+            }
+        ], 
+        "changeRequired": false, 
+        "isCancelled": false, 
+        "serviceType": "train"
+      }
+    ]
+  }
 """
 api.add_resource(ServiceDetails, '/api/service')
 
