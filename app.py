@@ -142,7 +142,10 @@ api.add_resource(StationBoard, '/api/board/<string:crs>')
     "scheduledDepartureTime": "15:17"
   }
 
-  @apiSuccessExample Success Response With allFields=True:
+  @apiExample Example usage:
+  curl -i http://darwin.hacktrain.com/api/service?allFields=True&id=SERVICE_ID&apiKey=YOUR-API-KEY
+
+  @apiSuccessExample Success Response With allFields:
   {
     "actualArrivalTime": null, 
     "actualDepartureTime": "On time", 
