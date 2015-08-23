@@ -25,7 +25,7 @@ class ServiceDetails(Resource):
         args = query_parser.parse_args()
 
         try:
-            response = get_service_details(args.api_key, id)
+            response = get_service_details(args.api_key, args.id)
         except Exception as e:
             response = {
                 "error": str(e)
