@@ -26,7 +26,7 @@ def after_request(response):
   @api {get} /api/status /api/status
   @apiVersion 0.0.1
   @apiName Darwin API services status
-  @apiGroup NRM Core
+  @apiGroup Core data
   @apiPermission public
  
   @apiDescription Retreive the status for the OpenLBDWS API as a text from http://realtime.nationalrail.co.uk/OpenLDBWSRegistration/.
@@ -49,7 +49,7 @@ api.add_resource(LdbwsStatus, '/api/status')
   @api {get} /api/crs/:query /api/crs
   @apiVersion 0.0.1
   @apiName Station codes
-  @apiGroup NRM Core
+  @apiGroup Core data
   @apiPermission public
 
   @apiDescription Retreive either all crs codes, or a subset of codes
