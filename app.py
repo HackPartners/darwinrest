@@ -23,10 +23,10 @@ def after_request(response):
   return response
 
 """
-  @api {get} /api/status Get status of Darwin services
+  @api {get} /api/status /api/status
   @apiVersion 0.0.1
-  @apiName Get Darwin Status
-  @apiGroup GetDarwinStatus
+  @apiName Darwin API services status
+  @apiGroup NRM Core
   @apiPermission public
  
   @apiDescription Retreive the status for the OpenLBDWS API as a text from http://realtime.nationalrail.co.uk/OpenLDBWSRegistration/.
@@ -37,6 +37,7 @@ def after_request(response):
   curl -i http://darwin.hacktrain.com/api/status
 
   @apiSuccessExample Success Response Example:
+  # Query http://darwin.hacktrain.com/api/status 
   {
      "OpenLDBWS": "Available"
   }
@@ -45,10 +46,10 @@ api.add_resource(LdbwsStatus, '/api/status')
 
 
 """
-  @api {get} /api/code/:query Get all crs codes, and query stations by string
+  @api {get} /api/crs/:query /api/crs
   @apiVersion 0.0.1
-  @apiName Get Station CRS
-  @apiGroup GetStationCRS
+  @apiName Station codes
+  @apiGroup NRM Core
   @apiPermission public
 
   @apiDescription Retreive either all crs codes, or a subset of codes
@@ -58,19 +59,33 @@ api.add_resource(LdbwsStatus, '/api/status')
   @apiExample Code Query Example:
   curl -i http://darwin.hacktrain.com/api/crs/eus
 
-  @apiSuccessExample
+  @apiSuccessExample Simple query request:
+  # Query http://darwin.hacktrain.com/api/crs/eus
   {
     "EUS": "Euston"
   }
+
+  @apiSuccessExample All CRS Codes request:
+  # Query http://darwin.hacktrain.com/api/crs
+  {
+    ...
+    "ZBB": "Barbican",
+    "ZBK": "Barking Underground",
+    "ZCW": "Canada Water",
+    "ZEL": "Elephant & Castle (Underground)",
+    "ZFD": "Farringdon",
+    "ZHS": "High Street Kensington Underground",
+    "ZWL": "Whitechapel"
+  }
 """
-api.add_resource(StationCrs, '/api/code', '/api/code/<string:query>')
+api.add_resource(StationCrs, '/api/crs', '/api/crs/<string:query>')
 
 
 """
-  @api {get} /api/board/:crs Request station board data
+  @api {get} /api/board/:crs /api/board
   @apiVersion 0.0.1
-  @apiName Get Station Board
-  @apiGroup GetStationBoard
+  @apiName Station board
+  @apiGroup Darwin core
   @apiPermission public
  
   @apiDescription Retrieve the details for a specific station board given a CRS code.
@@ -92,6 +107,7 @@ api.add_resource(StationCrs, '/api/code', '/api/code/<string:query>')
   curl -i http://darwin.hacktrain.com/api/board/EUS?apiKey=YOUR-API-KEY
 
   @apiSuccessExample Success Simple Response Example:
+  # Query http://darwin.hacktrain.com/api/board/EUS?apiKey=YOUR-API-KEY 
   [
     {
         "arrival": "19:14", 
@@ -111,10 +127,10 @@ api.add_resource(StationBoard, '/api/board/<string:crs>')
 
 
 """
-  @api {get} /api/service Request details for service
+  @api {get} /api/service/:id /api/service
   @apiVersion 0.0.1
-  @apiName Get Service Details
-  @apiGroup GetServiceDetails
+  @apiName Service details
+  @apiGroup Darwin core
   @apiPermission user
  
   @apiDescription Retrieve the details for a specific service given a service ID.
@@ -131,6 +147,7 @@ api.add_resource(StationBoard, '/api/board/<string:crs>')
   curl -i http://darwin.hacktrain.com/api/service?id=SERVICE_ID&apiKey=YOUR-API-KEY
 
   @apiSuccessExample Success Response Example:
+  # Query http://darwin.hacktrain.com/api/service?id=SERVICE_ID&apiKey=YOUR-API-KEY
   {
     "crs": "EUS", 
     "isCancelled": null, 
@@ -142,10 +159,8 @@ api.add_resource(StationBoard, '/api/board/<string:crs>')
     "scheduledDepartureTime": "15:17"
   }
 
-  @apiExample Example usage:
-  curl -i http://darwin.hacktrain.com/api/service?allFields=True&id=SERVICE_ID&apiKey=YOUR-API-KEY
-
   @apiSuccessExample Success Response With allFields:
+  # Query http://darwin.hacktrain.com/api/service?allFields=True&id=SERVICE_ID&apiKey=YOUR-API-KEY
   {
     "actualArrivalTime": null, 
     "actualDepartureTime": "On time", 

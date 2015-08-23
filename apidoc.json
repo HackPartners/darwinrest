@@ -6,8 +6,12 @@
     "title": "Darwin REST API",
     "url" : "https://api.hacktrain.com"
   },
-  "header": {
-    "title": "Introduction",
+  "order": [
+    "NRM_Core",
+    "Darwin_Core"
+  ],
+  "footer": {
+    "title": "Contribute",
     "filename": "README.md"
   }
 }
