@@ -17,7 +17,7 @@ Big shoutout to Mr. [Robert B. Clarke](https://github.com/robert-b-clarke) for c
 
 ## Motivation
 
-Our vision is to bring innovation to the railway industry, and the first step to achieve this is by making the current masses of data available in the industry, easy to access and process. For this reason the HackTrain team has decided to create this opens source project to expose a standardized REST API for the Darwin API.
+Our vision is to bring innovation to the railway industry, and the first step to achieve this is making the current masses of data available in the industry, easy to access and process. For this reason the HackTrain team has decided to create this open source project to expose a standardized REST API for the Darwin API.
 
 
 ## Code Example
@@ -59,9 +59,9 @@ System tests will be added as project is developed further.
 Currently the project is in early alpha phase. We are waiting for greater support in order to develop this project further. Our future roadmap includes:
 * Exposing a REST interface for all SOAP endpoints
 * Exposing a REST interface for extra functionality
-** Adding status of OpenLDWS API through REST
+* Adding status of OpenLDWS API through REST
 * Exposing a WebSockets interface for Darwin PUSH data
-* Exploring posibility of adding REST interface to data from Darwin PUSH
+* Exploring possibility of adding REST interface to data from Darwin PUSH
 
 
 ## License
