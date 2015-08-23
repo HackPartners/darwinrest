@@ -49,7 +49,7 @@ api.add_resource(LdbwsStatus, '/api/status')
   @apiVersion 0.0.1
   @apiName Get Station CRS
   @apiGroup GetStationCRS
-  @apiPersmission public
+  @apiPermission public
 
   @apiDescription Retreive either all crs codes, or a subset of codes
 
