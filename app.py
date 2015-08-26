@@ -10,6 +10,7 @@ from resources.stationboard import StationBoard
 from resources.servicedetails import ServiceDetails
 from resources.ldbwsstatus import LdbwsStatus
 from resources.stationcrs import StationCrs
+from resources.stationmetadata import StationMetaData
 
 app = Flask(__name__)
 api = Api(app)
@@ -43,7 +44,6 @@ def after_request(response):
   }
 """
 api.add_resource(LdbwsStatus, '/api/status')
-
 
 """
   @api {get} /api/crs/:query /api/crs
@@ -80,6 +80,8 @@ api.add_resource(LdbwsStatus, '/api/status')
 """
 api.add_resource(StationCrs, '/api/crs', '/api/crs/<string:query>')
 
+
+api.add_resource(StationMetaData, '/api/station', '/api/station/<string:query>')
 
 """
   @api {get} /api/board/:crs /api/board

@@ -11,6 +11,12 @@ filepath = os.path.abspath(os.path.join(os.path.dirname(__file__), '../data/stat
 with open(filepath) as json_file:
     stations_and_codes = json.load(json_file)
 
+
+## TODO
+filepath = os.path.abspath(os.path.join(os.path.dirname(__file__), '../data/stationdata.json'))
+with open(filepath) as json_file:
+    stations_data = json.load(json_file)
+
 def get_ldbws_status():
     """
     This function retreives the url for the OpenLDBWS status and returns
@@ -40,11 +46,13 @@ def get_stations_and_codes(query):
 
     found_stations = stations_and_codes
 
-    print query
-
     if query:
         found_stations = (dict((k, v) 
                             for k, v in stations_and_codes.items() 
                             if query.upper() in v.upper()))
 
     return found_stations
+
+def get_stations_metadata(query):
+    return stations_data
+
