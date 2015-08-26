@@ -46,27 +46,27 @@ def after_request(response):
 api.add_resource(LdbwsStatus, '/api/status')
 
 """
-  @api {get} /api/crs/:query /api/crs
+  @api {get} /api/station/code/:query /api/station
   @apiVersion 0.0.1
   @apiName Station codes
   @apiGroup Core data
   @apiPermission public
 
-  @apiDescription Retreive either all crs codes, or a subset of codes
+  @apiDescription Retreive either all station CRS codes, or a subset of codes
 
   @apiParam {String} query (Optional) A query to find all stations that contain this string.
 
   @apiExample Code Query Example:
-  curl -i http://darwin.hacktrain.com/api/crs/eus
+  curl -i http://darwin.hacktrain.com/api/station/code/eus
 
   @apiSuccessExample Simple query request:
-  # Query http://darwin.hacktrain.com/api/crs/eus
+  # Query http://darwin.hacktrain.com/api/station/code/eus
   {
     "EUS": "Euston"
   }
 
   @apiSuccessExample All CRS Codes request:
-  # Query http://darwin.hacktrain.com/api/crs
+  # Query http://darwin.hacktrain.com/api/station/code
   {
     ...
     "ZBB": "Barbican",
@@ -78,15 +78,17 @@ api.add_resource(LdbwsStatus, '/api/status')
     "ZWL": "Whitechapel"
   }
 """
-api.add_resource(StationCrs, '/api/crs', '/api/crs/<string:query>')
-
-
-api.add_resource(StationMetaData, '/api/station', '/api/station/<string:query>')
+api.add_resource(StationCrs, '/api/station/code', '/api/station/code/<string:query>')
 
 """
-  @api {get} /api/board/:crs /api/board
+  @api {get} /api...
+"""
+api.add_resource(StationMetaData, '/api/station/detail', '/api/station/detail/<string:query>')
+
+"""
+  @api {get} /api/train/:crs /api/train
   @apiVersion 0.0.1
-  @apiName Station board
+  @apiName Station train
   @apiGroup Darwin core
   @apiPermission public
  
@@ -106,10 +108,10 @@ api.add_resource(StationMetaData, '/api/station', '/api/station/<string:query>')
   @apiSuccess {Number}   platform      The platform number.
 
   @apiExample Usage Simple Request:
-  curl -i http://darwin.hacktrain.com/api/board/EUS?apiKey=YOUR-API-KEY
+  curl -i http://darwin.hacktrain.com/api/train/EUS?apiKey=YOUR-API-KEY
 
   @apiSuccessExample Success Simple Response Example:
-  # Query http://darwin.hacktrain.com/api/board/EUS?apiKey=YOUR-API-KEY 
+  # Query http://darwin.hacktrain.com/api/train/EUS?apiKey=YOUR-API-KEY 
   [
     {
         "arrival": "19:14", 
@@ -125,7 +127,7 @@ api.add_resource(StationMetaData, '/api/station', '/api/station/<string:query>')
     }
   ]
 """
-api.add_resource(StationBoard, '/api/board/<string:crs>')
+api.add_resource(StationBoard, '/api/train/<string:crs>')
 
 
 """

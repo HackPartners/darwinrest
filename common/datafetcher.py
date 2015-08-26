@@ -54,12 +54,15 @@ def get_stations_and_codes(query):
     return found_stations
 
 def get_stations_metadata(query):
-
+    """
+    This function returns not only the codes for the stations, but as well
+    it returns the details of the stations, such as geolocation, etc.
+    """
     found_stations = stations_data
 
     if query:
         found_stations = [i for i in stations_data 
-                            if query.upper() in i["originTlc"].upper()]
+                            if query.upper() in i["crs"].upper()]
 
     return found_stations
 
