@@ -12,8 +12,8 @@ def _get_formatted_locations(locations):
     locat = []
     for d in locations:
         curr_locat = {
-            "location": d.location_name,
-            "crs": d.crs
+            "stationName": d.location_name,
+            "stationCode": d.crs
         }
         locat.append(curr_locat)
 
@@ -32,7 +32,7 @@ def _get_calling_point_lists(calling_point_lists):
         for cp in cp_list.calling_points:
             response_item = {}
             response_item["locationName"] = cp.location_name
-            response_item["crs"] = cp.crs
+            response_item["stationCode"] = cp.crs
             response_item["actualTime"] = cp.at
             response_item["estimatedTime"] = cp.et
             response_item["scheduledTime"] = cp.st
@@ -44,23 +44,22 @@ def _get_calling_point_lists(calling_point_lists):
 
 def get_station_board(
         api_key, 
-        crs_code,
+        station_code,
         departures,
         arrivals,
         destination,
-        origin, 
-        all_fields):
-
-    crs_upper = crs_code.upper()
+        origin,
+        rows):
 
     darwin_session = _get_darwin_session(api_key)
 
     station_board = darwin_session.get_station_board(
-                        crs_upper,
+                        station_code,
                         include_departures=departures,
                         include_arrivals=arrivals,
                         destination_crs=destination,
-                        origin_crs=origin)
+                        origin_crs=origin,
+                        rows=rows)
 
     response = []
 
@@ -69,18 +68,16 @@ def get_station_board(
 
         # BASIC FIELDS
         board["platform"] = station.platform
-        board["destination"] = station.destination_text
-        board["origin"] = station.origin_text
-        board["arrival"] = station.std
-        board["departure"] = station.etd
+        board["scheduledDepartureTime"] = station.std
+        board["estimatedDepartureTime"] = station.etd
+        board["scheduledArrivalTime"] = station.sta
+        board["estimatedArrivalTime"] = station.eta
         board["platform"] = station.platform
         board["serviceId"] = station.service_id
-
-        if all_fields:
-            board["destinations"] = _get_formatted_locations(station.destinations)
-            board["origins"] = _get_formatted_locations(station.origins)
-            board["operatorCode"] = station.operator_code
-            board["operatorName"] = station.operator_name
+        board["destinations"] = _get_formatted_locations(station.destinations)
+        board["origins"] = _get_formatted_locations(station.origins)
+        board["operatorCode"] = station.operator_code
+        board["operatorName"] = station.operator_name
 
         response.append(board)
 
@@ -96,7 +93,7 @@ def get_service_details(api_key, service_id, all_fields=False):
     # standard fields
     service_response["isCancelled"] = service_details.is_cancelled
     service_response["locationName"] = service_details.location_name
-    service_response["crs"] = service_details.crs
+    service_response["stationCode"] = service_details.crs
     service_response["platform"] = service_details.platform
     service_response["scheduledArrivalTime"] = service_details.sta
     service_response["scheduledDepartureTime"] = service_details.std

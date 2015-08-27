@@ -9,8 +9,10 @@ import os
 ## codes and the value is their respective printable station name.
 filepath = os.path.abspath(os.path.join(os.path.dirname(__file__), '../data/stationcodes.json'))
 with open(filepath) as json_file:
-    stations_and_codes = json.load(json_file)
+    stations_codes_names = json.load(json_file)
 
+# Creating a variable with flipped key value for faster lookup for station names and codes
+station_names_codes = dict((str(v.upper()), str(k))  for k, v in stations_codes_names.iteritems())
 
 ## TODO
 filepath = os.path.abspath(os.path.join(os.path.dirname(__file__), '../data/stationdata.json'))
@@ -44,11 +46,11 @@ def get_stations_and_codes(query):
     matched with the query given by the parameter.
     """
 
-    found_stations = stations_and_codes
+    found_stations = stations_codes_names
 
     if query:
         found_stations = (dict((k, v) 
-                            for k, v in stations_and_codes.items() 
+                            for k, v in stations_codes_names.items() 
                             if query.upper() in v.upper()))
 
     return found_stations
@@ -65,4 +67,19 @@ def get_stations_metadata(query):
                             if query.upper() in i["crs"].upper()]
 
     return found_stations
+
+def validate_station_string(station, param_type):
+    
+    station_upper = station.upper()
+
+    if station_upper in stations_codes_names:
+        return station_upper
+
+    if station_upper in station_names_codes:
+        return station_names_codes[station_upper]
+
+    raise KeyError("No valid CRS or station name found for string '"
+                    + station + "' on parameter '" + param_type + "'.")
+
+
 

@@ -7,8 +7,10 @@
     "url" : "https://api.hacktrain.com"
   },
   "order": [
-    "Core_data",
-    "Darwin_Core"
+    "Status",
+    "Station",
+    "Train",
+    "Service"
   ],
   "header": {
     "title": "Introduction",
