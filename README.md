@@ -1,3 +1,5 @@
+[![powered by National Rail Enquiries](http://www.xcitybrum.co.uk/Content/images/poweredby.png)](http://www.nationalrail.co.uk/100296.aspx)
+
 ## Overview
 
 * This is a wrapper for National Rail Enquiries' Darwin API that exposes a REST API. 
@@ -57,11 +59,11 @@ System tests will be added as project is developed further.
 ## Roadmap
 
 Currently the project is in early alpha phase. We are waiting for greater support in order to develop this project further. Our future roadmap includes:
-* Exposing a REST interface for all SOAP endpoints
-* Exposing a REST interface for extra functionality
-* Adding status of OpenLDWS API through REST
-* Exposing a WebSockets interface for Darwin PUSH data
-* Exploring possibility of adding REST interface to data from Darwin PUSH
+* Design and expose a REST interface for 'next' and 'fastest' SOAP endpoints
+* Adding tests to all endpoints
+* Adding continuous integration with TravisCI, or similar framework
+* Exploring other datasets that could enhance Darwin (geolocation, etc)
+* Exploring other Darwin endpoints, such as Darwin push and see how it can be enhanced
 
 
 ## License
