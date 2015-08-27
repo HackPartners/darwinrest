@@ -19,7 +19,7 @@ Big shoutout to Mr. [Robert B. Clarke](https://github.com/robert-b-clarke) for c
 
 ## Motivation
 
-Our vision is to bring innovation to the railway industry, and the first step to achieve this is making the current masses of data available in the industry, easy to access and process. For this reason the HackTrain team has decided to create this open source project to expose a standardized REST API for the Darwin API.
+Our vision is to bring innovation to the railway industry, and the first step to achieve this is making the current masses of data available in the industry, easy to access and process. For this reason the HackTrain team has decided to create this open source project to expose a standardized REST API for the Darwin API. This project will be maintained by the community for the community.
 
 
 ## Code Example
@@ -59,6 +59,7 @@ System tests will be added as project is developed further.
 ## Roadmap
 
 Currently the project is in early alpha phase. We are waiting for greater support in order to develop this project further. Our future roadmap includes:
+* Create a setup.py that sets up all the environment
 * Design and expose a REST interface for 'next' and 'fastest' SOAP endpoints
 * Adding tests to all endpoints
 * Adding continuous integration with TravisCI, or similar framework
