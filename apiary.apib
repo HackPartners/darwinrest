@@ -1,0 +1,53 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# Darwin REST API
+
+This page contains the documentation for Darwin's REST API. This is an open source project initiated and led by the [HackTrain team](http://hacktrain.com). If you are interested on contributing, feel free to [fork the repo on github](https://github.com/HackPartners/darwinrest), or drop us a line at [hello@hackpartners.com](mailito:hello@hackpartners.com).
+<br>
+<br>
+
+The Darwin REST API consists of a few core endpoints that can be queried through a GET request. You can test most of these examples by just copying the links and opening them in your web browser. Some example endpoints you can try out of the box are:
+
+* [http://darwin.hacktrain.com/api/crs](http://darwin.hacktrain.com/api/crs)
+* [http://darwin.hacktrain.com/api/status](http://darwin.hacktrain.com/api/status)
+
+For other requests, you will be required to register at the [National Rail Enquiries](http://www.nationalrail.co.uk/46391.aspx) to obtain your Darwin OpenLDWS API Key.
+
+## Status [/api/status]
+
+### Darwin Status [GET]
+
++ Response 200 (application/json)
+
+        {
+            "OpenLDBWS": "Available"
+        }
+
+# Group Station
+
+## Station Detail [/api/station/detail/{query}]
+
++ Parameters
+    + query (string, optional)
+
+        The query to filter station names with
+
++ Attributes (object)
+
+    + crs: EUS (string) - The station code
+    + owner: Network Rail (string) - The train operating company that operates the route
+    + postcode: NW1 2RT, UK (string) - Postcode of the station
+    + stationName: Euston (string) - The name of the station
+
+### Station Details  [GET]
+
+You may create your own question using this action. It takes a JSON
+object containing a question and a collection of answers in the
+form of choices.
+
+Retrieves the coupon with the given ID.
+
++ Response 200 (application/json)
+    + Attributes (array[Station Detail])
+
