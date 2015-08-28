@@ -14,7 +14,9 @@ The Darwin REST API consists of a few core endpoints that can be queried through
 
 For other requests, you will be required to register at the [National Rail Enquiries](http://www.nationalrail.co.uk/46391.aspx) to obtain your Darwin OpenLDWS API Key.
 
-## Status [/api/status]
+# Group ./status
+
+## ./status [/api/status]
 
 ### Darwin Status [GET]
 
@@ -24,9 +26,33 @@ For other requests, you will be required to register at the [National Rail Enqui
             "OpenLDBWS": "Available"
         }
 
-# Group Station
+# Group ./station
 
-## Station Detail [/api/station/detail/{query}]
+## ./station/code/{query} [/api/station/code/{query}]
+
+Retreive either all station CRS codes, or a subset of codes
+
++ Parameters
+    + query (string, optional)
+
+        The query to filter station names with
+
+### Station Codes  [GET]
+
++ Response 200 (application/json)
+
+        {
+            "ASI": "Ashford International (Eurostar)", 
+            "BEU": "Beaulieu Road", 
+            "EBA": "Euxton Balshaw Lane", 
+            "EUS": "London Euston", 
+            "LEU": "Leuchars (for St. Andrews)", 
+            "PRH": "Penrhyndeudraeth"
+        }
+            
+## ./station/detail/{query} [/api/station/detail/{query}]
+
+Retreive metadata about the stations, including location, sttaion code, etc.
 
 + Parameters
     + query (string, optional)
@@ -40,14 +66,22 @@ For other requests, you will be required to register at the [National Rail Enqui
     + postcode: NW1 2RT, UK (string) - Postcode of the station
     + stationName: Euston (string) - The name of the station
 
-### Station Details  [GET]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
-
-Retrieves the coupon with the given ID.
+### ./station/detail/{station}  [GET]
 
 + Response 200 (application/json)
     + Attributes (array[Station Detail])
 
+# Group ./train
+
+## ./train/{station} [/api/train/{station}]
+
+Retreive all departures and arrivals for the station given by the query, which can be either a station code, or a station name.
+
++ Parameters
+    + station (string)
+        
+        The name or code for the station
+
++ Attributes (object)
+    
+    + 
