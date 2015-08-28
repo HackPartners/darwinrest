@@ -442,7 +442,7 @@ api.add_resource(
         "callingPoints": [
             {
                 "actualTime": "15:46", 
-                "crs": "MKC", 
+                "crs": "MKC",   
                 "estimatedTime": null, 
                 "locationName": "Milton Keynes Central", 
                 "scheduledTime": "15:50"
