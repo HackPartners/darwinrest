@@ -1,4 +1,4 @@
-setuptools
+setuptools >= 1.4
 flask 
 flask_restful 
 nre-darwin-py 
