@@ -18,7 +18,7 @@ For other requests, you will be required to register at the [National Rail Enqui
 
 ## ./status [/api/status]
 
-### Darwin Status [GET]
+### /status [GET]
 
 + Response 200 (application/json)
 
@@ -37,7 +37,7 @@ Retreive either all station CRS codes, or a subset of codes
 
         The query to filter station names with
 
-### Station Codes  [GET]
+### /station/code/eu  [GET]
 
 + Response 200 (application/json)
 
@@ -51,7 +51,6 @@ Retreive either all station CRS codes, or a subset of codes
         }
             
 ## ./station/detail/{query} [/api/station/detail/{query}]
-
 Retreive metadata about the stations, including location, sttaion code, etc.
 
 + Parameters
@@ -59,29 +58,313 @@ Retreive metadata about the stations, including location, sttaion code, etc.
 
         The query to filter station names with
 
-+ Attributes (object)
-
-    + crs: EUS (string) - The station code
-    + owner: Network Rail (string) - The train operating company that operates the route
-    + postcode: NW1 2RT, UK (string) - Postcode of the station
-    + stationName: Euston (string) - The name of the station
-
-### ./station/detail/{station}  [GET]
+### /station/detail/eus  [GET]
 
 + Response 200 (application/json)
-    + Attributes (array[Station Detail])
+
+        [
+          {
+            "crs": "EUS",
+            "owner": "Network Rail",
+            "postcode": "NW1 2RT, UK",
+            "stationName": "Euston"
+          }
+        ] 
 
 # Group ./train
 
-## ./train/{station} [/api/train/{station}]
+## ./train/{station} [/api/train/{station}?apiKey={apiKey}&rows={rows}]
 
-Retreive all departures and arrivals for the station given by the query, which can be either a station code, or a station name.
+Retreive all departures and arrivals for the station given, which can be either a station code, or a station name.
 
 + Parameters
-    + station (string)
-        
+    + station (string)  
         The name or code for the station
+    + apiKey (string) 
+        The Darwin API key
+    + rows (int, optional) 
+        The number of rows to return (up to 150)
+        + Default: 10
+        
 
-+ Attributes (object)
+### /train/EUS [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "destinations": [
+                    {
+                        "stationCode": "GLC", 
+                        "stationName": "Glasgow Central"
+                    }, 
+                    {
+                        "stationCode": "EDB", 
+                        "stationName": "Edinburgh"
+                    }
+                ], 
+                "estimatedArrivalTime": null, 
+                "estimatedDepartureTime": "On time", 
+                "operatorCode": "CS", 
+                "operatorName": "Caledonian Sleeper", 
+                "origins": [
+                    {
+                        "stationCode": "EUS", 
+                        "stationName": "London Euston"
+                    }
+                ], 
+                "platform": "1", 
+                "scheduledArrivalTime": null, 
+                "scheduledDepartureTime": "23:50", 
+                "serviceId": "2MTvBgDvOM22s56FAz1kLA=="
+            }, 
+            {
+                "destinations": [
+                    {
+                        "stationCode": "EUS", 
+                        "stationName": "London Euston"
+                    }
+                ], 
+                "estimatedArrivalTime": "23:44", 
+                "estimatedDepartureTime": null, 
+                "operatorCode": "VT", 
+                "operatorName": "Virgin Trains", 
+                "origins": [
+                    {
+                        "stationCode": "MAN", 
+                        "stationName": "Manchester Piccadilly"
+                    }
+                ], 
+                "platform": "3", 
+                "scheduledArrivalTime": "23:51", 
+                "scheduledDepartureTime": null, 
+                "serviceId": "sB98KMHDSLteYxb1lLMxmg=="
+            }
+        ]
+        
+
+## ./train/{station}/to [/api/train/{station}/to?apiKey={apiKey}&rows={rows}]
+Retreive all departures for the station given, which can be either a station code, or a station name.
+
++ Parameters
+    + station (string)  
+        The name or code for the station
+    + apiKey (string) 
+        The Darwin API key
+    + rows (int, optional) 
+        The number of rows to return (up to 150)
+        + Default: 10
+        
+
+### /train/EUS/to [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "destinations": [
+                    {
+                        "stationCode": "NMP", 
+                        "stationName": "Northampton"
+                    }
+                ], 
+                "estimatedArrivalTime": null, 
+                "estimatedDepartureTime": "On time", 
+                "operatorCode": "LM", 
+                "operatorName": "London Midland", 
+                "origins": [
+                    {
+                        "stationCode": "EUS", 
+                        "stationName": "London Euston"
+                    }
+                ], 
+                "platform": null, 
+                "scheduledArrivalTime": null, 
+                "scheduledDepartureTime": "00:34", 
+                "serviceId": "gexsoLcgThseYrxL8G2tPg=="
+            }, 
+            {
+                "destinations": [
+                    {
+                        "stationCode": "MKC", 
+                        "stationName": "Milton Keynes Central"
+                    }
+                ], 
+                "estimatedArrivalTime": null, 
+                "estimatedDepartureTime": "On time", 
+                "operatorCode": "LM", 
+                "operatorName": "London Midland", 
+                "origins": [
+                    {
+                        "stationCode": "EUS", 
+                        "stationName": "London Euston"
+                    }
+                ], 
+                "platform": null, 
+                "scheduledArrivalTime": null, 
+                "scheduledDepartureTime": "01:34", 
+                "serviceId": "ZcFeH25ZaATsfN2IRlcXzg=="
+            }
+        ]
+
+
+## ./train/{station}/from [/api/train/{station}/from?apiKey={apiKey}&rows={rows}]
+Retreive all departures for the station given, which can be either a station code, or a station name.
+
++ Parameters
+    + station (string)  
+        The name or code for the station
+    + apiKey (string) 
+        The Darwin API key
+    + rows (int, optional) 
+        The number of rows to return (up to 150)
+        + Default: 10
     
-    + 
+
+### /train/London Euston/FROM [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "destinations": [
+                    {
+                        "stationCode": "EUS", 
+                        "stationName": "London Euston"
+                    }
+                ], 
+                "estimatedArrivalTime": "00:32", 
+                "estimatedDepartureTime": null, 
+                "operatorCode": "VT", 
+                "operatorName": "Virgin Trains", 
+                "origins": [
+                    {
+                        "stationCode": "WVH", 
+                        "stationName": "Wolverhampton"
+                    }
+                ], 
+                "platform": "5", 
+                "scheduledArrivalTime": "00:06", 
+                "scheduledDepartureTime": null, 
+                "serviceId": "HudMqaloWGHXlG9oTES/Hw=="
+            }, 
+            {
+                "destinations": [
+                    {
+                        "stationCode": "EUS", 
+                        "stationName": "London Euston"
+                    }
+                ], 
+                "estimatedArrivalTime": "00:29", 
+                "estimatedDepartureTime": null, 
+                "operatorCode": "LM", 
+                "operatorName": "London Midland", 
+                "origins": [
+                    {
+                        "stationCode": "BHM", 
+                        "stationName": "Birmingham New Street"
+                    }
+                ], 
+                "platform": "8", 
+                "scheduledArrivalTime": "00:21", 
+                "scheduledDepartureTime": null, 
+                "serviceId": "OaQLS1Fd0zzGKRrAkDb4/Q=="
+            }
+        ]    
+
+
+## ./train/{station}/from/{station2} [/api/train/{station}/from/{station2}?apiKey={apiKey}&rows={rows}]
+Retreive all departures for the station given, which can be either a station code, or a station name.
+
++ Parameters
+    + station (string)  
+        The name or code for the station
+    + apiKey (string) 
+        The Darwin API key
+    + rows (int, optional) 
+        The number of rows to return (up to 150)
+        + Default: 10
+    
+
+### /train/London Euston/FROM/Wvh [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "destinations": [
+                    {
+                        "stationCode": "EUS", 
+                        "stationName": "London Euston"
+                    }
+                ], 
+                "estimatedArrivalTime": "00:33", 
+                "estimatedDepartureTime": null, 
+                "operatorCode": "VT", 
+                "operatorName": "Virgin Trains", 
+                "origins": [
+                    {
+                        "stationCode": "WVH", 
+                        "stationName": "Wolverhampton"
+                    }
+                ], 
+                "platform": "5", 
+                "scheduledArrivalTime": "00:06", 
+                "scheduledDepartureTime": null, 
+                "serviceId": "HudMqaloWGHXlG9oTES/Hw=="
+            }, 
+            {
+                "destinations": [
+                    {
+                        "stationCode": "EUS", 
+                        "stationName": "London Euston"
+                    }
+                ], 
+                "estimatedArrivalTime": "On time", 
+                "estimatedDepartureTime": null, 
+                "operatorCode": "VT", 
+                "operatorName": "Virgin Trains", 
+                "origins": [
+                    {
+                        "stationCode": "WVH", 
+                        "stationName": "Wolverhampton"
+                    }
+                ], 
+                "platform": null, 
+                "scheduledArrivalTime": "01:15", 
+                "scheduledDepartureTime": null, 
+                "serviceId": "1PbEDM7OTrqy6VEUqRbxjQ=="
+            }
+        ]
+
+
+## ./train/{station}/from/{station2} [/api/train/{station}/from/{station2}?apiKey={apiKey}&rows={rows}&allFields={allFields}]
+Retreive all departures for the station given, which can be either a station code, or a station name.
+
++ Parameters
+    + station (string)  
+        The name or code for the station
+    + apiKey (string) 
+        The Darwin API key
+    + rows (int, optional) 
+        The number of rows to return (up to 150)
+        + Default: 10
+    + allFields (bool, optional)
+        Toggle display for all fields
+        + Default: False
+    
+
+### /service?id=1PbEDM7OTrqy6VEUqRbxjQ [GET]
+
++ Response 200 (application/json)
+
+        {
+            "isCancelled": null, 
+            "locationName": "London Euston", 
+            "operatorCode": "VT", 
+            "operatorName": "Virgin Trains", 
+            "platform": null, 
+            "scheduledArrivalTime": "01:15", 
+            "scheduledDepartureTime": null, 
+            "stationCode": "EUS"
+        }
