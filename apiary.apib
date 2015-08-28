@@ -78,9 +78,9 @@ Retreive metadata about the stations, including location, sttaion code, etc.
 Retreive all departures and arrivals for the station given, which can be either a station code, or a station name.
 
 + Parameters
-    + station (string)  
+    + station (string, `Eus`)  
         The name or code for the station
-    + apiKey (string) 
+    + apiKey (string, `b55bbec8-81d3-4ba5-8626-c1c7568a8106`) 
         The Darwin API key
     + rows (int, optional) 
         The number of rows to return (up to 150)
@@ -147,9 +147,9 @@ Retreive all departures and arrivals for the station given, which can be either 
 Retreive all departures for the station given, which can be either a station code, or a station name.
 
 + Parameters
-    + station (string)  
+    + station (string, `EUS`)  
         The name or code for the station
-    + apiKey (string) 
+    + apiKey (string, `b55bbec8-81d3-4ba5-8626-c1c7568a8106`) 
         The Darwin API key
     + rows (int, optional) 
         The number of rows to return (up to 150)
@@ -212,9 +212,9 @@ Retreive all departures for the station given, which can be either a station cod
 Retreive all departures for the station given, which can be either a station code, or a station name.
 
 + Parameters
-    + station (string)  
+    + station (string, `London Euston`)  
         The name or code for the station
-    + apiKey (string) 
+    + apiKey (string, `b55bbec8-81d3-4ba5-8626-c1c7568a8106`) 
         The Darwin API key
     + rows (int, optional) 
         The number of rows to return (up to 150)
@@ -277,13 +277,15 @@ Retreive all departures for the station given, which can be either a station cod
 Retreive all departures for the station given, which can be either a station code, or a station name.
 
 + Parameters
-    + station (string)  
+    + station (string, `London Euston`)  
         The name or code for the station
-    + apiKey (string) 
+    + apiKey (string, `b55bbec8-81d3-4ba5-8626-c1c7568a8106`) 
         The Darwin API key
     + rows (int, optional) 
         The number of rows to return (up to 150)
         + Default: 10
+    + station2
+        The seconday station to filter results with
     
 
 ### /train/London Euston/FROM/Wvh [GET]
@@ -340,12 +342,14 @@ Retreive all departures for the station given, which can be either a station cod
 
 # Group ./service
 
-## ./service [/api/service?id={id}]
+## ./service [/api/service?id={id}&apiKey={apiKey}]
 Retreive all departures for the station given, which can be either a station code, or a station name.
 
 + Parameters
-    + id (string)
+    + id (string, `lvTZD/b7EAPeSnfjvD6DNA==`)
         A base64 string that represents the service id
+    + apiKey (string, `b55bbec8-81d3-4ba5-8626-c1c7568a8106`) 
+        The Darwin API key
     
 
 ### /service?id=1PbEDM7OTrqy6VEUqRbxjQ [GET]
