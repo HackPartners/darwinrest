@@ -338,20 +338,14 @@ Retreive all departures for the station given, which can be either a station cod
         ]
 
 
-## ./train/{station}/from/{station2} [/api/train/{station}/from/{station2}?apiKey={apiKey}&rows={rows}&allFields={allFields}]
+# Group ./service
+
+## ./service [/api/service?id={id}]
 Retreive all departures for the station given, which can be either a station code, or a station name.
 
 + Parameters
-    + station (string)  
-        The name or code for the station
-    + apiKey (string) 
-        The Darwin API key
-    + rows (int, optional) 
-        The number of rows to return (up to 150)
-        + Default: 10
-    + allFields (bool, optional)
-        Toggle display for all fields
-        + Default: False
+    + id (string)
+        A base64 string that represents the service id
     
 
 ### /service?id=1PbEDM7OTrqy6VEUqRbxjQ [GET]
