@@ -1,3 +1,4 @@
+setuptools
 flask 
 flask_restful 
 nre-darwin-py 
