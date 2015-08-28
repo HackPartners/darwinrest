@@ -1,5 +1,6 @@
 flask 
 flask_restful 
 nre-darwin-py 
-lxml cssselect 
+lxml 
+cssselect 
 beautifulsoup4
