@@ -1,6 +1,6 @@
 from flask_restful import Resource
 
-from common.datafetcher import get_stations_metadata
+from breakingthebuildtest.common.datafetcher import get_stations_metadata
 
 class StationMetaData(Resource):
 
