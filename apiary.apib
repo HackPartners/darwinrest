@@ -49,27 +49,6 @@ Retreive either all station CRS codes, or a subset of codes
             "LEU": "Leuchars (for St. Andrews)", 
             "PRH": "Penrhyndeudraeth"
         }
-            
-## ./api/station/detail/{query} [/api/station/detail/{query}]
-Retreive metadata about the stations, including location, sttaion code, etc.
-
-+ Parameters
-    + query (string, optional, `EUS`)
-
-        The query to filter station names with
-
-### /api/station/detail/eus  [GET]
-
-+ Response 200 (application/json)
-
-        [
-          {
-            "crs": "EUS",
-            "owner": "Network Rail",
-            "postcode": "NW1 2RT, UK",
-            "stationName": "Euston"
-          }
-        ] 
 
 # Group ./api/train
 
