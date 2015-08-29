@@ -3,7 +3,7 @@ from flask_restful import Resource, reqparse, marshal_with, fields
 from darwinrest.common.darwinutil import get_service_details
 from darwinrest.common.util import api_bool
 
-from nredarwin.webservice import DarwinLdbSession
+from nredarwin.webservice import DarwinLdbSession, WebServiceError
 
 query_parser = reqparse.RequestParser()
 
@@ -36,6 +36,10 @@ class ServiceDetails(Resource):
                             args.id, 
                             all_fields=args.all_fields)
             
+        except WebServiceError as e:
+            response = {
+                "error": "Darwin web service error - probably service id does not exist."
+            }
         except Exception as e:
             response = {
                 "error": str(e)

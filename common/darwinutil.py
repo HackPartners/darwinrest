@@ -88,7 +88,7 @@ def get_service_details(api_key, service_id, all_fields=False):
     darwin_session = _get_darwin_session(api_key)
 
     service_details = darwin_session.get_service_details(service_id)
-
+    
     service_response = {}
     # standard fields
     service_response["isCancelled"] = service_details.is_cancelled
