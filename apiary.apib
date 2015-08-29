@@ -14,11 +14,11 @@ The Darwin REST API consists of a few core endpoints that can be queried through
 
 For other requests, you will be required to register at the [National Rail Enquiries](http://www.nationalrail.co.uk/46391.aspx) to obtain your Darwin OpenLDWS API Key.
 
-# Group ./status
+# Group ./api/status
 
-## ./status [/api/status]
+## ./api/status [/api/status]
 
-### /status [GET]
+### /api/status [GET]
 
 + Response 200 (application/json)
 
@@ -26,9 +26,9 @@ For other requests, you will be required to register at the [National Rail Enqui
             "OpenLDBWS": "Available"
         }
 
-# Group ./station
+# Group ./api/station
 
-## ./station/code/{query} [/api/station/code/{query}]
+## ./api/station/code/{query} [/api/station/code/{query}]
 
 Retreive either all station CRS codes, or a subset of codes
 
@@ -37,7 +37,7 @@ Retreive either all station CRS codes, or a subset of codes
 
         The query to filter station names with
 
-### /station/code/eu  [GET]
+### /api/station/code/eu  [GET]
 
 + Response 200 (application/json)
 
@@ -50,7 +50,7 @@ Retreive either all station CRS codes, or a subset of codes
             "PRH": "Penrhyndeudraeth"
         }
             
-## ./station/detail/{query} [/api/station/detail/{query}]
+## ./api/station/detail/{query} [/api/station/detail/{query}]
 Retreive metadata about the stations, including location, sttaion code, etc.
 
 + Parameters
@@ -58,7 +58,7 @@ Retreive metadata about the stations, including location, sttaion code, etc.
 
         The query to filter station names with
 
-### /station/detail/eus  [GET]
+### /api/station/detail/eus  [GET]
 
 + Response 200 (application/json)
 
@@ -71,9 +71,9 @@ Retreive metadata about the stations, including location, sttaion code, etc.
           }
         ] 
 
-# Group ./train
+# Group ./api/train
 
-## ./train/{station} [/api/train/{station}?apiKey={apiKey}&rows={rows}]
+## ./api/train/{station} [/api/train/{station}?apiKey={apiKey}&rows={rows}]
 
 Retreive all departures and arrivals for the station given, which can be either a station code, or a station name.
 
@@ -87,7 +87,7 @@ Retreive all departures and arrivals for the station given, which can be either 
         + Default: 10
         
 
-### /train/EUS [GET]
+### /api/train/EUS [GET]
 
 + Response 200 (application/json)
 
@@ -156,7 +156,7 @@ Retreive all departures for the station given, which can be either a station cod
         + Default: 10
         
 
-### /train/EUS/to [GET]
+### /api/train/EUS/to [GET]
 
 + Response 200 (application/json)
 
@@ -208,7 +208,7 @@ Retreive all departures for the station given, which can be either a station cod
         ]
 
 
-## ./train/{station}/from [/api/train/{station}/from?apiKey={apiKey}&rows={rows}]
+## ./api/train/{station}/from [/api/train/{station}/from?apiKey={apiKey}&rows={rows}]
 Retreive all departures for the station given, which can be either a station code, or a station name.
 
 + Parameters
@@ -221,7 +221,7 @@ Retreive all departures for the station given, which can be either a station cod
         + Default: 10
     
 
-### /train/London Euston/FROM [GET]
+### /api/train/London Euston/FROM [GET]
 
 + Response 200 (application/json)
 
@@ -273,7 +273,7 @@ Retreive all departures for the station given, which can be either a station cod
         ]    
 
 
-## ./train/{station}/from/{station2} [/api/train/{station}/from/{station2}?apiKey={apiKey}&rows={rows}]
+## ./api/train/{station}/from/{station2} [/api/train/{station}/from/{station2}?apiKey={apiKey}&rows={rows}]
 Retreive all departures for the station given, which can be either a station code, or a station name.
 
 + Parameters
@@ -288,7 +288,7 @@ Retreive all departures for the station given, which can be either a station cod
         The seconday station to filter results with
     
 
-### /train/London Euston/FROM/Wvh [GET]
+### /api/train/London Euston/FROM/Wvh [GET]
 
 + Response 200 (application/json)
 
@@ -340,9 +340,9 @@ Retreive all departures for the station given, which can be either a station cod
         ]
 
 
-# Group ./service
+# Group ./api/service
 
-## ./service [/api/service?id={id}&apiKey={apiKey}]
+## ./api/service [/api/service?id={id}&apiKey={apiKey}]
 Retreive all departures for the station given, which can be either a station code, or a station name.
 
 + Parameters
@@ -352,4 +352,4 @@ Retreive all departures for the station given, which can be either a station cod
         The Darwin API key
     
 
-### /service?id=1PbEDM7OTrqy6VEUqRbxjQ [GET]
+### /api/service?id=1PbEDM7OTrqy6VEUqRbxjQ [GET]
