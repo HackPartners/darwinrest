@@ -14,11 +14,6 @@ with open(filepath) as json_file:
 # Creating a variable with flipped key value for faster lookup for station names and codes
 station_names_codes = dict((str(v.upper()), str(k))  for k, v in stations_codes_names.iteritems())
 
-## TODO
-filepath = os.path.abspath(os.path.join(os.path.dirname(__file__), '../data/stationdata.json'))
-with open(filepath) as json_file:
-    stations_data = json.load(json_file)
-
 def get_ldbws_status():
     """
     This function retreives the url for the OpenLDBWS status and returns
@@ -52,19 +47,6 @@ def get_stations_and_codes(query):
         found_stations = (dict((k, v) 
                             for k, v in stations_codes_names.items() 
                             if query.upper() in v.upper()))
-
-    return found_stations
-
-def get_stations_metadata(query):
-    """
-    This function returns not only the codes for the stations, but as well
-    it returns the details of the stations, such as geolocation, etc.
-    """
-    found_stations = stations_data
-
-    if query:
-        found_stations = [i for i in stations_data 
-                            if query.upper() in i["crs"].upper()]
 
     return found_stations
 
