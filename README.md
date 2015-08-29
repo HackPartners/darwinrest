@@ -1,5 +1,7 @@
 [![powered by National Rail Enquiries](http://www.xcitybrum.co.uk/Content/images/poweredby.png)](http://www.nationalrail.co.uk/100296.aspx)
 
+[![Build Status](https://drone.io/github.com/HackPartners/darwinrest/status.png)](https://drone.io/github.com/HackPartners/darwinrest/latest)
+
 ## Overview
 
 * This is a wrapper for National Rail Enquiries' Darwin API that exposes a REST API. 
