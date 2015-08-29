@@ -52,10 +52,12 @@ If you're running a fresh ubuntu server, make sure you have the following depend
 * sudo apt-get install libxml2-dev libxslt1-dev python-dev
 * apt-get install python-lxml
 
+The system is currently connected to Drone.io for continuous integration and continuous deployment. 
+
 
 ## Tests
 
-System tests will be added as project is developed further.
+The system uses Dredd to test all the api endpoints. Nose tests will be added soon.
 
 
 ## Roadmap
