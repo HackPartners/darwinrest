@@ -1,7 +1,7 @@
 from flask_restful import Resource, reqparse, marshal_with, fields
 
-from darwinrest.common.darwinutil import get_service_details
-from darwinrest.common.util import api_bool
+from common.darwinutil import get_service_details
+from common.util import api_bool
 
 from nredarwin.webservice import DarwinLdbSession, WebServiceError
 

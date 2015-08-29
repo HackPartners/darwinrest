@@ -1,8 +1,8 @@
 from flask_restful import Resource, reqparse, marshal_with, fields
 
-from darwinrest.common.darwinutil import get_station_board
-from darwinrest.common.util import api_bool
-from darwinrest.common.datafetcher import validate_station_string
+from common.darwinutil import get_station_board
+from common.util import api_bool
+from common.datafetcher import validate_station_string
 
 query_parser = reqparse.RequestParser()
 

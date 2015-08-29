@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse, marshal_with, fields
 
-from darwinrest.common.datafetcher import get_stations_and_codes
+from common.datafetcher import get_stations_and_codes
 
 class StationCrs(Resource):
 

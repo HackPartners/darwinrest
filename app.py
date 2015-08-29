@@ -1,9 +1,4 @@
 #Adding to pythonpath
-import sys
-import os
-directory = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..'))
-sys.path.append(directory)
-
 from flask import Flask
 from flask_restful import Api
 from resources.stationboard import StationBoard
