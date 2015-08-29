@@ -4,3 +4,4 @@ nre-darwin-py
 lxml 
 cssselect 
 beautifulsoup4
+gunicorn
