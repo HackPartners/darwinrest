@@ -1,2 +1,0 @@
-#!/bin/bash
-apidoc -i . -o documentation/docs/ -t apidoctemplate/
