@@ -64,6 +64,7 @@ The system uses Dredd to test all the api endpoints. Nose tests will be added so
 
 Currently the project is in early alpha phase. We are waiting for greater support in order to develop this project further. Our future roadmap includes:
 * Create a setup.py that sets up all the environment
+* Add all the python dependencies inside a virtualenv
 * Design and expose a REST interface for 'next' and 'fastest' SOAP endpoints
 * Adding tests to all endpoints
 * Adding continuous integration with TravisCI, or similar framework
