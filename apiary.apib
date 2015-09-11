@@ -1,7 +1,7 @@
 FORMAT: 1A
 HOST: http://darwin.hacktrain.com/
 
-# Darwin REST API
+# Darwin REST API [BETA]
 
 This page contains the documentation for Darwin's REST API. This is an open source project initiated and led by the [HackTrain team](http://hacktrain.com). If you are interested on contributing, feel free to [fork the repo on github](https://github.com/HackPartners/darwinrest), or drop us a line at [hello@hackpartners.com](mailito:hello@hackpartners.com).
 <br>
@@ -9,7 +9,7 @@ This page contains the documentation for Darwin's REST API. This is an open sour
 
 The Darwin REST API consists of a few core endpoints that can be queried through a GET request. You can test most of these examples by just copying the links and opening them in your web browser. Some example endpoints you can try out of the box are:
 
-* [http://darwin.hacktrain.com/api/crs](http://darwin.hacktrain.com/api/crs)
+* [http://darwin.hacktrain.com/api/station/code](http://darwin.hacktrain.com/api/station/code)
 * [http://darwin.hacktrain.com/api/status](http://darwin.hacktrain.com/api/status)
 
 For other requests, you will be required to register at the [National Rail Enquiries](http://www.nationalrail.co.uk/46391.aspx) to obtain your Darwin OpenLDWS API Key.
@@ -17,6 +17,8 @@ For other requests, you will be required to register at the [National Rail Enqui
 # Group ./api/status
 
 ## ./api/status [/api/status]
+
+Provides information on the status of the Darwin OpenLDBWS interface. The response is a string containing the status as displayed in the [official darwin site](http://realtime.nationalrail.co.uk/OpenLDBWSRegistration/).
 
 ### /api/status [GET]
 
@@ -30,7 +32,7 @@ For other requests, you will be required to register at the [National Rail Enqui
 
 ## ./api/station/code/{query} [/api/station/code/{query}]
 
-Retreive either all station CRS codes, or a subset of codes
+Retreive station CRS codes. If no query is specified, it returns all CRS codes - otherwise, it returns the codes where the station name matched the query.
 
 + Parameters
     + query (string, optional, `eu`)
@@ -49,27 +51,6 @@ Retreive either all station CRS codes, or a subset of codes
             "LEU": "Leuchars (for St. Andrews)", 
             "PRH": "Penrhyndeudraeth"
         }
-            
-## ./api/station/detail/{query} [/api/station/detail/{query}]
-Retreive metadata about the stations, including location, sttaion code, etc.
-
-+ Parameters
-    + query (string, optional, `EUS`)
-
-        The query to filter station names with
-
-### /api/station/detail/eus  [GET]
-
-+ Response 200 (application/json)
-
-        [
-          {
-            "crs": "EUS",
-            "owner": "Network Rail",
-            "postcode": "NW1 2RT, UK",
-            "stationName": "Euston"
-          }
-        ] 
 
 # Group ./api/train
 
